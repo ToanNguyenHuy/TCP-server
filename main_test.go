@@ -8,7 +8,7 @@ import (
 )
 
 func TestS(t *testing.T) {
-	conn, err := net.Dial("tcp", "localhost:1729")
+	conn, err := net.Dial("tcp", "127.0.0.1:1729")
 	if err != nil {
 		t.Fatal(err)
 	}
