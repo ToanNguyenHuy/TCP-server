@@ -31,8 +31,8 @@ jobs:
         sleep 2
 
     - name: Run tests
-        run: go test -v ./...
+      run: go test -v ./...
 
     - name: Stop server
-        if: always()
-        run: kill $(cat server.pid)
+      if: always()
+      run: kill $(cat server.pid)
