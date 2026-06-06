@@ -14,11 +14,19 @@ func TestS(t *testing.T) {
 	}
 	defer conn.Close()
 
-	res, err := bufio.NewReader(conn).ReadString('\n')
+	_, err = conn.Write([]byte("hello"))
 	if err != nil {
 		t.Fatal(err)
 	}
-	if strings.TrimSpace(res) != "Hello, World! s" {
-		t.Fatalf("Expected Hello")
+
+	reader := bufio.NewReader(conn)
+
+	status, err := reader.ReadString('\n')
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if strings.TrimSpace(status) != "HTTP/1.1 200 OK" {
+		t.Fatalf("unexpected status: %q", status)
 	}
 }

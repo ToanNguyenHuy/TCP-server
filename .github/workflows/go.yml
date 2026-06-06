@@ -30,6 +30,12 @@ jobs:
         echo $! > server.pid
         sleep 2
 
+    - name: Debug
+      run: |
+        cat server.log
+        ps aux | grep server
+        ss -lnt
+
     - name: Run tests
       run: go test -v ./...
 
